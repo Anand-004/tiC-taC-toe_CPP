@@ -5,24 +5,44 @@
 
 
 char getPlayerchoice(); //get users choice for symbol
+void showBoard(char *spaces); //shows tic-tac-toe board on each turn
+void playerTurn(char *spaces,char playerChar);
 
 
 
 int main()
     {
+        char spaces[9]={'1','2','3','4','5','6','7','8','9'};
         char playerChar;
         char computerChar;
+        char exitchar;
+        bool gameEndflag=true;
+
+
+
+
         std::cout<<"\n---------- Welcome to TIC-TAC-TOE terminal Game ----------\n";
         std::cout<<"\n";
         playerChar=getPlayerchoice();
-        if(playerChar=='x')
+        if(playerChar=='X')
             {
-                computerChar='o';
+                computerChar='O';
             }
         else
             {
-                computerChar='x';
+                computerChar='O';
             }
+        std::cout<<"\n Game starts ..1..2..3\n\n";
+        
+        do{
+            showBoard(spaces);
+            std::cout<<"\n";
+            playerTurn(spaces,playerChar);
+            
+
+
+        }while(gameEndflag);
+
 
     }//End OF Main Function;
 
@@ -38,6 +58,36 @@ char getPlayerchoice()
             }
         }while(!(userChar=='x')&&!(userChar=='o'));
         
-        return userChar;
+        return std::toupper(userChar);
     }
 
+void showBoard(char *spaces)
+    {
+        std::cout<<"\n\n";
+        std::cout<<"      |      |      "<<"\n";
+        std::cout<<"  "<<spaces[0]<<"   |  "<<spaces[1]<<"   |  "<<spaces[2]<<"  "<<"\n";
+        std::cout<<"______|______|______"<<"\n";
+        std::cout<<"      |      |      "<<"\n";
+        std::cout<<"  "<<spaces[3]<<"   |  "<<spaces[4]<<"   |  "<<spaces[5]<<"  "<<"\n";
+        std::cout<<"______|______|______"<<"\n";
+        std::cout<<"      |      |      "<<"\n";
+        std::cout<<"  "<<spaces[6]<<"   |  "<<spaces[7]<<"   |  "<<spaces[8]<<"  "<<"\n";
+        std::cout<<"      |      |      "<<"\n";
+    }
+void playerTurn(char *spaces,char playerChar)
+    {   
+        int pos;
+        do{
+            std::cout<<"Enter the location (1-9) :";
+            std::cin>>pos;
+            if(!(pos>0)||!(pos<10))
+                {
+                    std::cout<<"\n-!!!---Please enter valid location......\n\n";
+                }
+            if(spaces[pos-1]=='X'||spaces[pos-1]=='O')
+                {
+                    std::cout<<"\n-!! Sorry the location was already filled.....\n\n";
+                }
+        }while((!(pos>0)||!(pos<10))||(spaces[pos-1]=='X'||spaces[pos-1]=='O'));
+        spaces[pos-1]=playerChar;
+    }
