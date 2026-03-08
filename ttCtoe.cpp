@@ -10,6 +10,8 @@ char getPlayerchoice(); //get users choice for symbol
 void showBoard(char *spaces); //shows tic-tac-toe board on each turn
 void playerTurn(char *spaces,char playerChar);
 void computerTurn(char *spaces,char computerChar);
+bool checkWinner(char *spaces,char playerChar,char computerChar);
+bool checkTie(char *space);
 
 
 
@@ -37,18 +39,49 @@ int main()
                 computerChar='X';
             }
         std::cout<<"\n Game starts ..1..2..3\n\n";
-        
-        do{
-            showBoard(spaces);
+        showBoard(spaces);
+
+        while(gameEndflag)
+        {
+            
             std::cout<<"\n";
             playerTurn(spaces,playerChar);
+            showBoard(spaces);
+
+            if(checkWinner(spaces,playerChar,computerChar))
+                {
+                    gameEndflag=false;
+                    break;
+                }
+            
+            if(checkTie(spaces))
+                {
+                    gameEndflag=false;
+                    break;
+                }
+
             std::cout<<"\n .....Computer Thinking .!";
             std::this_thread::sleep_for(std::chrono::seconds(1));
             computerTurn(spaces,computerChar);
+            showBoard(spaces);
+
+            if(checkWinner(spaces,playerChar,computerChar))
+                {
+                    gameEndflag=false;
+                    break;
+                }
+            
+            if(checkTie(spaces))
+                {
+                    gameEndflag=false;
+                    break;
+                }
             
 
 
-        }while(gameEndflag);
+        }
+
+        std::cout<<"\n\n          --------GoodBye---------- ";
 
 
     }//End OF Main Function;
@@ -109,4 +142,45 @@ void computerTurn(char *spaces,char computerChar)
         } while (spaces[pos]=='X'||spaces[pos]=='O');
         spaces[pos]=computerChar;
         
+    }
+
+bool checkWinner(char *spaces,char playerChar,char computerChar)
+    {
+        if( (spaces[0]==spaces[1]&&spaces[1]==spaces[2])||
+            (spaces[3]==spaces[4]&&spaces[4]==spaces[5])||
+            (spaces[6]==spaces[7]&&spaces[7]==spaces[8])||
+            (spaces[0]==spaces[3]&&spaces[3]==spaces[6])||
+            (spaces[1]==spaces[4]&&spaces[4]==spaces[7])||
+            (spaces[2]==spaces[5]&&spaces[5]==spaces[8])||
+            (spaces[0]==spaces[4]&&spaces[4]==spaces[8])||
+            (spaces[2]==spaces[4]&&spaces[4]==spaces[6]))
+            {
+
+                if(spaces[0]==computerChar||spaces[4]==computerChar||spaces[8]==computerChar)
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!YOU loSE.....COMPUTER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+                if(spaces[0]==playerChar||spaces[4]==playerChar||spaces[8]==playerChar)
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!.....PLAYER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+                 
+            
+            }
+        return false;
+    }
+bool checkTie(char *spaces)
+    {
+        for(int i=0;i<9;i++)
+            {
+                if(spaces[i]!='X'&&spaces[i]!='O'){
+                    return false;
+                }
+            }
+        std::cout<<"\n\n          ------- ITs A Draw ------";
+        return true;
     }
