@@ -1,5 +1,7 @@
 #include <iostream>
 #include <ctime>  //included for creating random seed with time (for computers turn)
+#include<chrono>
+#include<thread>
 
 
 
@@ -7,6 +9,8 @@
 char getPlayerchoice(); //get users choice for symbol
 void showBoard(char *spaces); //shows tic-tac-toe board on each turn
 void playerTurn(char *spaces,char playerChar);
+void computerTurn(char *spaces,char computerChar);
+
 
 
 
@@ -30,7 +34,7 @@ int main()
             }
         else
             {
-                computerChar='O';
+                computerChar='X';
             }
         std::cout<<"\n Game starts ..1..2..3\n\n";
         
@@ -38,6 +42,9 @@ int main()
             showBoard(spaces);
             std::cout<<"\n";
             playerTurn(spaces,playerChar);
+            std::cout<<"\n .....Computer Thinking .!";
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            computerTurn(spaces,computerChar);
             
 
 
@@ -90,4 +97,16 @@ void playerTurn(char *spaces,char playerChar)
                 }
         }while((!(pos>0)||!(pos<10))||(spaces[pos-1]=='X'||spaces[pos-1]=='O'));
         spaces[pos-1]=playerChar;
+    }
+
+void computerTurn(char *spaces,char computerChar)
+    {
+        int pos;
+        srand(time(0));
+        do
+        {
+            pos = rand()%9;
+        } while (spaces[pos]=='X'||spaces[pos]=='O');
+        spaces[pos]=computerChar;
+        
     }
