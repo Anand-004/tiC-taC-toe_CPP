@@ -1,3 +1,3 @@
 # tiC-taC-toe_CPP
 a minimal tic tac toe game using Cpp
-written for practising cpp
+written for practicing cpp
