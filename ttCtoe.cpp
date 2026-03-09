@@ -61,7 +61,7 @@ int main()
                 }
 
             std::cout<<"\n .....Computer Thinking .!";
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::this_thread::sleep_for(std::chrono::seconds(3));
             computerTurn(spaces,computerChar);
             showBoard(spaces);
 
@@ -76,9 +76,6 @@ int main()
                     gameEndflag=false;
                     break;
                 }
-            
-
-
         }
 
         std::cout<<"\n\n          --------GoodBye---------- ";
@@ -100,7 +97,6 @@ char getPlayerchoice()
         
         return std::toupper(userChar);
     }
-
 void showBoard(char *spaces)
     {
         std::cout<<"\n\n";
@@ -131,7 +127,6 @@ void playerTurn(char *spaces,char playerChar)
         }while((!(pos>0)||!(pos<10))||(spaces[pos-1]=='X'||spaces[pos-1]=='O'));
         spaces[pos-1]=playerChar;
     }
-
 void computerTurn(char *spaces,char computerChar)
     {
         int pos;
@@ -143,34 +138,128 @@ void computerTurn(char *spaces,char computerChar)
         spaces[pos]=computerChar;
         
     }
-
 bool checkWinner(char *spaces,char playerChar,char computerChar)
     {
-        if( (spaces[0]==spaces[1]&&spaces[1]==spaces[2])||
-            (spaces[3]==spaces[4]&&spaces[4]==spaces[5])||
-            (spaces[6]==spaces[7]&&spaces[7]==spaces[8])||
-            (spaces[0]==spaces[3]&&spaces[3]==spaces[6])||
-            (spaces[1]==spaces[4]&&spaces[4]==spaces[7])||
-            (spaces[2]==spaces[5]&&spaces[5]==spaces[8])||
-            (spaces[0]==spaces[4]&&spaces[4]==spaces[8])||
-            (spaces[2]==spaces[4]&&spaces[4]==spaces[6]))
+        if(spaces[0]==spaces[1]&&spaces[1]==spaces[2])
             {
-
-                if(spaces[0]==computerChar||spaces[4]==computerChar||spaces[8]==computerChar)
-                    {
-                        std::cout<<"\n";
-                        std::cout<<"\n ....!!!!YOU loSE.....COMPUTER WINS.....!!!!....\n\n";
-                        return true;
-                    }
-                if(spaces[0]==playerChar||spaces[4]==playerChar||spaces[8]==playerChar)
+                if(spaces[0]==playerChar&&spaces[1]==playerChar&&spaces[2]==playerChar)
                     {
                         std::cout<<"\n";
                         std::cout<<"\n ....!!!!.....PLAYER WINS.....!!!!....\n\n";
                         return true;
                     }
-                 
-            
+                else   
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!YOU loSE.....COMPUTER WINS.....!!!!....\n\n";
+                        return true;
+                    }
             }
+        if(spaces[3]==spaces[4]&&spaces[4]==spaces[5])
+            {
+                if(spaces[3]==playerChar&&spaces[4]==playerChar&&spaces[5]==playerChar)
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!.....PLAYER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+                else   
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!YOU loSE.....COMPUTER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+            }
+        if(spaces[6]==spaces[7]&&spaces[7]==spaces[8])
+            {
+                if(spaces[6]==playerChar&&spaces[7]==playerChar&&spaces[8]==playerChar)
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!.....PLAYER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+                else   
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!YOU loSE.....COMPUTER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+            }
+        if(spaces[0]==spaces[3]&&spaces[3]==spaces[6])
+            {
+                if(spaces[0]==playerChar&&spaces[3]==playerChar&&spaces[6]==playerChar)
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!.....PLAYER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+                else   
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!YOU loSE.....COMPUTER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+            }
+        if(spaces[1]==spaces[4]&&spaces[4]==spaces[7])
+            {
+                if(spaces[4]==playerChar&&spaces[1]==playerChar&&spaces[7]==playerChar)
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!.....PLAYER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+                else   
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!YOU loSE.....COMPUTER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+            }
+        if(spaces[2]==spaces[5]&&spaces[5]==spaces[8])
+            {
+                if(spaces[2]==playerChar&&spaces[5]==playerChar&&spaces[8]==playerChar)
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!.....PLAYER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+                else   
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!YOU loSE.....COMPUTER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+            }
+        if(spaces[0]==spaces[4]&&spaces[4]==spaces[8])
+            {
+                if(spaces[0]==playerChar&&spaces[4]==playerChar&&spaces[8]==playerChar)
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!.....PLAYER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+                else   
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!YOU loSE.....COMPUTER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+            }
+        if(spaces[2]==spaces[4]&&spaces[4]==spaces[6])
+            {
+                if(spaces[2]==playerChar&&spaces[4]==playerChar&&spaces[6]==playerChar)
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!.....PLAYER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+                else   
+                    {
+                        std::cout<<"\n";
+                        std::cout<<"\n ....!!!!YOU loSE.....COMPUTER WINS.....!!!!....\n\n";
+                        return true;
+                    }
+            }        
         return false;
     }
 bool checkTie(char *spaces)
