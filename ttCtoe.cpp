@@ -61,7 +61,7 @@ int main()
                 }
 
             std::cout<<"\n .....Computer Thinking .!";
-            std::this_thread::sleep_for(std::chrono::seconds(3));
+            std::this_thread::sleep_for(std::chrono::seconds(2));
             computerTurn(spaces,computerChar);
             showBoard(spaces);
 
@@ -80,7 +80,8 @@ int main()
 
         std::cout<<"\n\n          --------GoodBye---------- ";
 
-
+        std::getchar();
+        return 0;
     }//End OF Main Function;
 
 
