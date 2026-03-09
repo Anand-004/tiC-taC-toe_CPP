@@ -21,7 +21,7 @@ int main()
         char spaces[9]={'1','2','3','4','5','6','7','8','9'};
         char playerChar;
         char computerChar;
-        char exitchar;
+        bool exitchar;
         bool gameEndflag=true;
 
 
@@ -79,8 +79,17 @@ int main()
         }
 
         std::cout<<"\n\n          --------GoodBye---------- ";
-
-        std::getchar();
+        exitchar=true;
+        while(exitchar)
+            {
+                char ex;
+                std::cout<<"\n\nPLease enter x to exit : ";
+                std::cin>>ex;
+                if(ex=='x'||ex=='X'){
+                    exitchar=false;
+                }
+                std::cout<<"\n";
+            }
         return 0;
     }//End OF Main Function;
 
